@@ -4,7 +4,6 @@ import customerDetail from "../../Pages/customerDetail";
 import orderSummary from "../../Pages/orderSummary";
 import addtoProduct from "../../Pages/addtoProduct";
 import selectProduct from "../../Pages/selectProduct";
-
 describe('Magneto Software Testing', () => {
       let testdatag;
       let productTestg
@@ -21,20 +20,16 @@ describe('Magneto Software Testing', () => {
             const home = new homeProduct();
             home.chooseProduct()
       })
-
       it('Select Product ', function () {
             const product = new selectProduct()
             product.magnetoProduct()
-
       })
-
       it('Click on Add to cart button and filling data', function () {
             const addproduct = new addtoProduct()
             addproduct.addtoCart()
             const customer = new customerDetail()
             cy.log(testdatag.email)
             customer.enterData(testdatag.email, testdatag.firstName, testdatag.lastName, testdatag.company, testdatag.street_address, testdatag.city, testdatag.postal_code, testdatag.phone)
-
       })
       it('Verify Order Summary data', async function () {
             const order = new orderSummary()

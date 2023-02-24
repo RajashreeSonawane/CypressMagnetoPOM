@@ -4,7 +4,7 @@ class orderSummary {
       cy.wait(5000)
     cy.get('.block > .title').click(),
       cy.wait(5000)
-     cy.get('.product-item-name')
+    cy.get('.product-item-name')
       .should('contain.text', Product_name)
       .should('be.visible')
     cy.wait(5000)
@@ -15,8 +15,6 @@ class orderSummary {
     cy.get('.cart-price > .price')
       .should('contain.text', Product_price)
       .should('be.visible')
-  
   }
 }
-
 export default orderSummary

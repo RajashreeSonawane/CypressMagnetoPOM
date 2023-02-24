@@ -1,7 +1,5 @@
-class addtoProduct{
-
-   addtoCart()
-     {
+class addtoProduct {
+   addtoCart() {
       cy.wait(2000)
       cy.get("#option-label-size-143-item-167").click()
       cy.wait(2000)
@@ -12,9 +10,6 @@ class addtoProduct{
       cy.xpath('//a[@class="action showcart"]').click({ force: true })
       cy.xpath('//*[@id="top-cart-btn-checkout"]').realClick()
       cy.wait(15000)
-          return this
-       }
-      }
-  
- export default addtoProduct
-  
+   }
+}
+export default addtoProduct

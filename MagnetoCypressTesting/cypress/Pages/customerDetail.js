@@ -1,6 +1,5 @@
 class customerDetail {
-
-  enterData(email,firstName,lastName,company,street_address,city,postal_code,phone) {
+  enterData(email, firstName, lastName, company, street_address, city, postal_code, phone) {
     cy.wait(10000)
     cy.get("#customer-email-fieldset > .required > .control > #customer-email").type(email),
       cy.wait(10000)
@@ -25,7 +24,6 @@ class customerDetail {
     cy.xpath("//*[@id='label_carrier_flatrate_flatrate']").click({ force: true }),
       cy.wait(2000)
     cy.get(".button").click()
-    
   }
 }
 export default customerDetail
