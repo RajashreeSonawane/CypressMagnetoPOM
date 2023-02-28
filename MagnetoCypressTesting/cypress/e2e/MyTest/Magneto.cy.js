@@ -5,21 +5,27 @@ import orderSummary from "../../Pages/orderSummary";
 import addtoProduct from "../../Pages/addtoProduct";
 import selectProduct from "../../Pages/selectProduct";
 describe('Magneto Software Testing', () => {
-      let testdatag;
       let productTestg
+      let data
+      let rowsLength
       before(function () {
-            cy.visit(Cypress.env('url'))
-            cy.fixture('test_data').then(function (testdata) {
-                  testdatag = testdata
+            cy.task('readXlsx', { file: 'cypress/fixtures/MagnetoExcel.xlsx', sheet: "MagnetoData" }).then((rows) => {
+                  rowsLength = rows.length;
+                  cy.writeFile("cypress/fixtures/xlsxData.json", { rows })
+            })
+            cy.fixture('xlsxData').then((datatest) => {
+                  data = datatest
             })
             cy.fixture('product').then(function (productTest) {
                   productTestg = productTest
             })
+            cy.visit(Cypress.env('url'))
       })
       it('Choose Product for Magneto', function () {
             const home = new homeProduct();
             home.chooseProduct()
       })
+
       it('Select Product ', function () {
             const product = new selectProduct()
             product.magnetoProduct()
@@ -28,8 +34,9 @@ describe('Magneto Software Testing', () => {
             const addproduct = new addtoProduct()
             addproduct.addtoCart()
             const customer = new customerDetail()
-            cy.log(testdatag.email)
-            customer.enterData(testdatag.email, testdatag.firstName, testdatag.lastName, testdatag.company, testdatag.street_address, testdatag.city, testdatag.postal_code, testdatag.phone)
+            for (let i = 0; i < rowsLength; i++) {
+                  customer.enterData(data.rows[i].email, data.rows[i].firstname, data.rows[i].lastname, data.rows[i].company, data.rows[i].street_address, data.rows[i].city, data.rows[i].postal_code, data.rows[i].phone)
+            }
       })
       it('Verify Order Summary data', async function () {
             const order = new orderSummary()
